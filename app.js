@@ -1,14 +1,3 @@
-function sayHi() {
-  console.log('hi!')
-}
-sayHi()
+var counter = require('./count')
 
-var sayBye = function() {
-  console.log('bye!')
-}
-
-function callFunction(fun) {
-  fun()
-}
-
-callFunction(sayBye)
+console.log(counter(['Shaun', 'Ryu', 'Yoshi']));
