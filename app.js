@@ -45,5 +45,17 @@ var readMe = fs.readFileSync('readMe.txt', 'utf8')
 fs.writeFileSync('writeMe.txt', readMe)
 
 fs.readFile('readMe.txt', 'utf8', (err, data) => {
-  fs.writeFile('writeMe.txt', data)
+  fs.writeFile('writeMe.txt', data, (error) => {
+    if (err) throw err
+  })
+})
+
+fs.mkdir('stuff', () => {
+  fs.readFile('readMe.txt', 'utf8', (err, data) => {
+    fs.writeFile('./stuff/writeMe.txt', data)
+  })
+})
+
+fs.unlink('./stuff/writeMe.txt', () => {
+  fs.rmdir('stuff')
 })
