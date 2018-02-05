@@ -1,61 +1,10 @@
-var stuff = require('./stuff')
+var http = require('http')
 
-console.log(stuff.counter(['Shaun', 'Ryu', 'Yoshi']))
-console.log(stuff.adder(5, 6))
-console.log(stuff.adder(5, stuff.pi))
-
-var events = require('events')
-
-var myEmitter = new events.EventEmitter()
-
-myEmitter.on('someEvent', function(msg) {
-  console.log(msg)
+var server = http.createServer((req, res) => {
+  console.log('request was made: ' + req.url)
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.end('Hey ninjas!')
 })
 
-myEmitter.emit('someEvent', 'the event was emitted')
-
-// 
-
-class Person extends events {
-    constructor(name) {
-        super()
-        this.name = name
-    }
-}
-
-const shaun = new Person('Shaun')
-const ryu = new Person('Ryu')
-const yoshi = new Person('Yoshi')
-
-const people = [shaun, ryu, yoshi]
-
-people.forEach((person) => {
-    person.on('speak', (msg) => {
-        console.log(person.name + ' said: ' + msg)
-    })
-})
-
-shaun.emit('speak', 'hey dudes!')
-
-// 
-
-var fs = require('fs')
-
-var readMe = fs.readFileSync('readMe.txt', 'utf8')
-fs.writeFileSync('writeMe.txt', readMe)
-
-fs.readFile('readMe.txt', 'utf8', (err, data) => {
-  fs.writeFile('writeMe.txt', data, (error) => {
-    if (err) throw err
-  })
-})
-
-fs.mkdir('stuff', () => {
-  fs.readFile('readMe.txt', 'utf8', (err, data) => {
-    fs.writeFile('./stuff/writeMe.txt', data)
-  })
-})
-
-fs.unlink('./stuff/writeMe.txt', () => {
-  fs.rmdir('stuff')
-})
+server.listen(3000, '127.0.0.1')
+console.log('yo dawgs, now listening to port 3000')
