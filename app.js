@@ -5,10 +5,10 @@ var app = express()
 app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  res.render('index')
 })
 app.get('/contact', (req, res) => {
-  res.send('this is the contact page')
+  res.render('contact')
 })
 app.get('/profile/:id', (req, res) => {
   var data = { age: 29, job: 'ninja', hobbies: ['eating', 'fighting', 'fishing'] }
