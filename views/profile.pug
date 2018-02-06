@@ -1,0 +1,16 @@
+html
+  head
+    title nodejs-mongodb-exercises
+  body
+    h1= 'Welcome to the profile of ' + person
+    p
+      strong Age: 
+      p= data.age
+      strong Job: 
+      p= data.job
+    h2 hobbies
+    ul
+      for hobby in data.hobbies
+        li= hobby
+      else
+        li sorry, no hobbies!
