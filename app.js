@@ -14,7 +14,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 app.get('/contact', (req, res) => {
-  res.render('contact')
+  console.log(req.query)
+  res.render('contact', { qs: req.query })
 })
 app.get('/profile/:id', (req, res) => {
   var data = { age: 29, job: 'ninja', hobbies: ['eating', 'fighting', 'fishing'] }
