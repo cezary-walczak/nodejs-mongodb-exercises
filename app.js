@@ -2,6 +2,7 @@ var express = require('express')
 var stylus = require('stylus')
 var bodyParser = require('body-parser')
 
+var todoController = require('./controllers/todoController')
 var app = express()
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -12,6 +13,8 @@ app.use('/assets', express.static('assets')).use(stylus.middleware({ // map rout
   src: __dirname + '/',
   dest: __dirname + '/'
 }))
+
+todoController(app)
 
 app.get('/', (req, res) => {
   res.render('index')
