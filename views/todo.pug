@@ -6,6 +6,5 @@ body
       input(type='text' name='item' placeholder='Add new item...' required)
       button(type='submit') Add item
     ul
-      li Item 1
-      li Item 2
-      li Item 3
+      for todo in todos
+        li= todo.item
