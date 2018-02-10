@@ -13,6 +13,6 @@ before((done) => {
   })
 })
 
-beforeEach((done) => {
-  mongoose.connection.collection.ninjachars.drop(() => { done() })
-})
+// beforeEach((done) => {
+//   mongoose.connection.collection.ninjachars.drop(() => { done() })
+// })
