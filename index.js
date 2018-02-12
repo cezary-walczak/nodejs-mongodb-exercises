@@ -1,9 +1,12 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const stylus = require('stylus')
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const routes = require('./routes/api')
 const app = express()
+
+mongoose.connect('mongodb://localhost/ninjago')
 
 app.set('view engine', 'pug')
 app.use('/assets', express.static('assets')).use(stylus.middleware({ // map routes to folder

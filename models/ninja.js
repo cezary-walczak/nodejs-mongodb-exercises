@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema()
+const Schema = mongoose.Schema
 
 const NinjaSchema = new Schema({
   name: {
@@ -9,7 +9,7 @@ const NinjaSchema = new Schema({
   rank: {
     type: String
   },
-  available {
+  available: {
     type: Boolean,
     default: false
   }
