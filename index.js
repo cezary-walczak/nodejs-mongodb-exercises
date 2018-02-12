@@ -15,6 +15,10 @@ app.use('/assets', express.static('assets')).use(stylus.middleware({ // map rout
 }))
 app.use(bodyParser.json())
 app.use(routes) // use uses middleware
+app.use((err, req, res, next) => {
+  // console.log(err)
+  res.status(422).send({error: err.message})
+})
 
 app.listen(process.env.port || 4000, () => {
   console.log('now listening for requests')
