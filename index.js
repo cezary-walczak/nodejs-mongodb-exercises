@@ -10,6 +10,7 @@ app.use('/assets', express.static('assets')).use(stylus.middleware({ // map rout
   src: __dirname + '/',
   dest: __dirname + '/'
 }))
+app.use(bodyParser.json())
 app.use(routes) // use uses middleware
 
 app.listen(process.env.port || 4000, () => {
