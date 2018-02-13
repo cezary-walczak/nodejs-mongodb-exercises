@@ -4,7 +4,17 @@ const router = express.Router()
 const Ninja = require('../models/ninja')
 
 router.get('/api/ninjas', (req, res, next) => {
-  res.send({type: 'GET'})
+  // Ninja.find({}).then((ninja) => { // find({}) returns all ninjas
+  //   send(ninja)
+  // })
+  Ninja.aggregate().near({
+    near: [parseFloat(req.query.lng), parseFloat(req.query.lat)],
+    maxDistance: 100000,
+    spherical: true,
+    distanceField: 'dist.calculated'
+  }).then(function (ninjas) {
+    res.send(ninjas)
+  }).catch(next)
 })
 
 router.post('/api/ninjas', (req, res, next) => {
